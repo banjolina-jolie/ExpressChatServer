@@ -1,15 +1,6 @@
 var fs = require('fs');
 
-exports.postHandler = function(req, res){
-  roomname = req.params.rmnm;
-  if (req.body.message) {
-    fs.appendFileSync("./data/"+roomname+"msgs.txt", req.body.message+ '\n');
-    res.redirect('/' + roomname);
-  }
-};
-
-exports.getHandler = function(req, res) {
-  // console.log("rmnm: ", req.params.rmnm);
+exports.getHandler = function(req, res){
   var roomname = req.params.rmnm;
   fs.readFile("./data/rooms.txt", "utf8",function(err, data){
     var rooms = data.split('\n');
@@ -18,5 +9,12 @@ exports.getHandler = function(req, res) {
       res.render('room', { title: roomname, rooms: rooms, body: bod });
     });
   });
+};
 
+exports.postHandler = function(req, res){
+  roomname = req.params.rmnm;
+  if (req.body.message) {
+    fs.appendFileSync("./data/"+roomname+"msgs.txt", req.body.message+ '\n');
+    res.redirect('/' + roomname);
+  }
 };

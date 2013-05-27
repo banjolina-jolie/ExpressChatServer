@@ -31,7 +31,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+app.get('/', routes.getHandler);
 app.post('/', routes.postHandler);
 app.get('/:rmnm', room.getHandler);
 app.post('/:rmnm', room.postHandler);

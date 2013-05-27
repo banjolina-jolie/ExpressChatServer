@@ -1,6 +1,10 @@
 extends layout
 
 block content
+  h1 Usertag
+    form(method='POST')
+      input(type='input', name='usertag')
+  #usertgContainer= usertag
   h1 Rooms
     form(method='POST')
       input(type='input', name='room')
