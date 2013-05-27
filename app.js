@@ -5,10 +5,12 @@
 
 var express = require('express'),
   routes = require('./routes'),
-  room = require('./routes/room.js'),
+  room = require('./routes/room'),
   http = require('http'),
   path = require('path'),
-  app = express();
+  app = express(),
+  url = require('url'),
+  qs = require('querystring');
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -31,9 +33,8 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.post('/', routes.postHandler);
-
-app.get('/room', room.list);
-app.post('/room', routes.postHandler);
+app.get('/:rmnm', room.getHandler);
+app.post('/:rmnm', room.postHandler);
 
 
 http.createServer(app).listen(app.get('port'), function(){

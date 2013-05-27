@@ -17,3 +17,5 @@ undefined
 undefined
 undefined
 sup
+asdf\
+<script> alert('hi');</script>
